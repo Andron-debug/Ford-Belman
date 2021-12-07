@@ -54,6 +54,53 @@ namespace Ford_Belman
             this.Height = lt.Location.Y + lt.Height + 200;
 
         }
+        /*
+         Алгоритм Форда-Беллмана
+
+            Исходные данные, определяемые пользователем:
+
+            Пользователь задает взвешенный орграф. Веса — произвольные вещественные числа. Способ ввода — по усмотрению разработчика.
+
+            Пользователь определяет вершину–начало (источник).
+
+            Результат работы программы:
+
+            Вычисляются расстояния и кратчайшие пути от источника до всех остальных вершин орграфа. В случае, если таковых нет, выдается соответствующая диагностика (Здесь необходимо различать случай, когда в соответствующей компоненте орграфа есть контуры отрицательной длины, и случай, когда нет достижимости из источника соответствующей вершины).
+
+            Для вычисления расстояний необходимо использовать алгоритм Форда-Беллмана
+         */
+        private void Next_Click(object sender, EventArgs e)
+        {
+            double[,] graf = new double[vertex, vertex];
+            bool ok = true;
+            try
+            {
+                for (int i = 0; i< vertex; i++)
+                    for(int j = 0; j<vertex; j++)
+                    {
+                        if ((is_graf.Checked) && (textBoxes[i, j].Text != textBoxes[j, i].Text)) throw new ApplicationException();
+                        if ((i != j) && (textBoxes[i, j].Text != ""))
+                            graf[i, j] = Convert.ToDouble(textBoxes[i, j].Text);
+                        else if (i == j) graf[i, j] = 0;
+                        else if (textBoxes[i, j].Text == "") graf[i, j] = double.PositiveInfinity;
+                    }
+            }
+            catch (ApplicationException ex)
+            {
+
+                DialogResult result = MessageBox.Show("Матрица не симетрична! Провости симметризацию?", "Ошибка ввода", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes) simertr();
+                else ok = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ok = false;
+            }
+            if (ok)
+            {
+            }
+        }
 
         private void Cayley_table_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -67,9 +114,7 @@ namespace Ford_Belman
             this.Hide();
         }
 
-        private void Next_Click(object sender, EventArgs e)
-        {
-        }
+       
 
         private void clear_Click(object sender, EventArgs e)
         {
