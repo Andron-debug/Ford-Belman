@@ -72,6 +72,7 @@ namespace Ford_Belman
         private void Next_Click(object sender, EventArgs e)
         {
             double[,] graf = new double[vertex, vertex];
+            int start = 0;
             bool ok = true;
             try
             {
@@ -84,8 +85,10 @@ namespace Ford_Belman
                         else if (i == j) graf[i, j] = 0;
                         else if (textBoxes[i, j].Text == "") graf[i, j] = double.PositiveInfinity;
                     }
+                start = Convert.ToInt32(start_vertex.Text);
+                if (start > vertex - 1) throw new Exception("Вершины с таким индексом не сущесвует");
             }
-            catch (ApplicationException ex)
+            catch (ApplicationException)
             {
 
                 DialogResult result = MessageBox.Show("Матрица не симетрична! Провости симметризацию?", "Ошибка ввода", MessageBoxButtons.YesNo);
@@ -99,12 +102,19 @@ namespace Ford_Belman
             }
             if (ok)
             {
+                //Форд-Белман
+                double[] D = new double[vertex];
+                for (int v = 0; v < vertex; v++) D[v] = graf[start, v];
+                for (int k = 0; k < vertex-2; k++)
+                    for (int v = 0; v < vertex; v++)
+                    {
+                        if (v != start)
+                            for (int u = 0; u < vertex; u++) if ((u != start) && (u != v))
+                                    if (D[v] > D[u] + graf[u, v]) D[v] = D[u] + graf[u, v];
+                    }
+                Form f = new Result(D, start);
+                f.ShowDialog();
             }
-        }
-
-        private void Cayley_table_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
         }
 
         private void Back_Click(object sender, EventArgs e)
@@ -134,6 +144,11 @@ namespace Ford_Belman
             for (int i = 0; i < vertex; i++)
                 for (int j = i; j < vertex; j++)
                     textBoxes[j, i].Text = textBoxes[i, j].Text;
+        }
+
+        private void Graf_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

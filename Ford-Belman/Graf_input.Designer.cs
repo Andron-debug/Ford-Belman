@@ -37,6 +37,8 @@ namespace Ford_Belman
             this.simetr_button = new System.Windows.Forms.Button();
             this.is_graf = new System.Windows.Forms.RadioButton();
             this.is_orgraf = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.start_vertex = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Back
@@ -116,7 +118,7 @@ namespace Ford_Belman
             this.is_graf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.is_graf.AutoSize = true;
             this.is_graf.Checked = true;
-            this.is_graf.Location = new System.Drawing.Point(197, 203);
+            this.is_graf.Location = new System.Drawing.Point(259, 203);
             this.is_graf.Name = "is_graf";
             this.is_graf.Size = new System.Drawing.Size(64, 21);
             this.is_graf.TabIndex = 6;
@@ -128,12 +130,30 @@ namespace Ford_Belman
             // 
             this.is_orgraf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.is_orgraf.AutoSize = true;
-            this.is_orgraf.Location = new System.Drawing.Point(197, 230);
+            this.is_orgraf.Location = new System.Drawing.Point(259, 230);
             this.is_orgraf.Name = "is_orgraf";
             this.is_orgraf.Size = new System.Drawing.Size(80, 21);
             this.is_orgraf.TabIndex = 7;
             this.is_orgraf.Text = "Орграф";
             this.is_orgraf.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(106, 183);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 17);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Исходная вершина";
+            // 
+            // start_vertex
+            // 
+            this.start_vertex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.start_vertex.Location = new System.Drawing.Point(109, 203);
+            this.start_vertex.Name = "start_vertex";
+            this.start_vertex.Size = new System.Drawing.Size(100, 22);
+            this.start_vertex.TabIndex = 9;
             // 
             // Graf_input
             // 
@@ -141,6 +161,8 @@ namespace Ford_Belman
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(501, 275);
+            this.Controls.Add(this.start_vertex);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.is_orgraf);
             this.Controls.Add(this.is_graf);
             this.Controls.Add(this.simetr_button);
@@ -150,7 +172,7 @@ namespace Ford_Belman
             this.Controls.Add(this.Next);
             this.Controls.Add(this.Back);
             this.Name = "Graf_input";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Cayley_table_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Graf_FormClosing);
             this.Load += new System.EventHandler(this.Cayley_table_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -167,5 +189,7 @@ namespace Ford_Belman
         private System.Windows.Forms.Button simetr_button;
         private System.Windows.Forms.RadioButton is_graf;
         private System.Windows.Forms.RadioButton is_orgraf;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox start_vertex;
     }
 }
