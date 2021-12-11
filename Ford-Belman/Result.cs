@@ -14,11 +14,13 @@ namespace Ford_Belman
     {
         private double[] D;
         int start;
-        public Result(double[] d, int s)
+        List<int>[] weys;
+        public Result(double[] d, int s, List<int>[] w)
         {
             InitializeComponent();
             D = d;
             start = s;
+            weys = w;
         }
 
         private void Result_Load(object sender, EventArgs e)
@@ -27,6 +29,18 @@ namespace Ford_Belman
             for (int i = 0; i < D.Length; i++)
                 if (D[i] != double.PositiveInfinity)
                     result_textBox.Text += $"{i}: {D[i]}{Environment.NewLine}";
+                else
+                    result_textBox.Text += $"{i}: Вершина не достижима{Environment.NewLine}";
+
+            result_textBox.Text += $"Кротчайшие пути {start} до {Environment.NewLine}";
+            for (int i = 0; i < D.Length; i++)
+                if (D[i] != double.PositiveInfinity)
+                {
+                    result_textBox.Text += $"{i}: ";
+                    foreach (int v in weys[i])
+                        result_textBox.Text += $"{v} ";
+                    result_textBox.Text += Environment.NewLine;
+                }
                 else
                     result_textBox.Text += $"{i}: Вершина не достижима{Environment.NewLine}";
         }

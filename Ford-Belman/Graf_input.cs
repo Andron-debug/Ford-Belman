@@ -85,21 +85,37 @@ namespace Ford_Belman
                         else if (i == j) graf[i, j] = 0;
                         else if (textBoxes[i, j].Text == "") graf[i, j] = double.PositiveInfinity;
                     }
-                start = Convert.ToInt32(start_vertex.Text);
-                if (start > vertex - 1) throw new Exception("Вершины с таким индексом не сущесвует");
             }
             catch (ApplicationException)
             {
 
                 DialogResult result = MessageBox.Show("Матрица не симетрична! Провости симметризацию?", "Ошибка ввода", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes) simertr();
-                else ok = false;
+                ok = false;
             }
-            catch (Exception ex)
+            catch
+            {
+                MessageBox.Show("Ошибка при вводе матрицы весов");
+                ok = false;
+            }
+
+            try
+            {
+                start = Convert.ToInt32(start_vertex.Text);
+                if ((start > vertex - 1)||(start < 0)) throw new ApplicationException("Вершины с таким индексом не сущесвует");
+            }
+            catch
+            (ApplicationException ex)
             {
                 MessageBox.Show(ex.Message);
                 ok = false;
             }
+            catch
+            {
+                MessageBox.Show("Ошибка при вводе исходной вершины");
+                ok = false;
+            }
+
             if (ok)
             {
                 //Форд-Белман
@@ -112,7 +128,27 @@ namespace Ford_Belman
                             for (int u = 0; u < vertex; u++) if ((u != start) && (u != v))
                                     if (D[v] > D[u] + graf[u, v]) D[v] = D[u] + graf[u, v];
                     }
-                Form f = new Result(D, start);
+                //Кротчайшие пути
+                List<int>[] ways = new List<int>[vertex];
+                for (int t = 0; t < vertex; t++)
+                {
+                    List<int> way = new List<int>();
+                    way.Add(t);
+                    int v = t;
+                    while(start != v)
+                    {
+                        int u;
+                        for (u = 0; u<vertex; u++)
+                        {
+                            if (D[v] == D[u] + graf[u, v]) break;
+                        }
+                        way.Add(u);
+                        v = u;
+                    }
+                    way.Reverse();
+                    ways[t] = way;
+                }
+                Form f = new Result(D, start, ways);
                 f.ShowDialog();
             }
         }
