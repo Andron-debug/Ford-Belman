@@ -25,24 +25,32 @@ namespace Ford_Belman
 
         private void Result_Load(object sender, EventArgs e)
         {
-            result_textBox.Text = $"Расстояния от {start} до {Environment.NewLine}";
+            if (weys != null)
+            {
+                result_textBox.Text = $"Расстояния от {start} до {Environment.NewLine}";
             for (int i = 0; i < D.Length; i++)
                 if (D[i] != double.PositiveInfinity)
                     result_textBox.Text += $"{i}: {D[i]}{Environment.NewLine}";
                 else
                     result_textBox.Text += $"{i}: Вершина не достижима{Environment.NewLine}";
+            
+                result_textBox.Text += $"Кротчайшие пути {start} до {Environment.NewLine}";
+                for (int i = 0; i < D.Length; i++)
+                    if (D[i] != double.PositiveInfinity)
+                    {
+                        result_textBox.Text += $"{i}: ";
+                        foreach (int v in weys[i])
+                            result_textBox.Text += $"{v} ";
+                        result_textBox.Text += Environment.NewLine;
+                    }
+                    else
+                        result_textBox.Text += $"{i}: Вершина не достижима{Environment.NewLine}";
 
-            result_textBox.Text += $"Кротчайшие пути {start} до {Environment.NewLine}";
-            for (int i = 0; i < D.Length; i++)
-                if (D[i] != double.PositiveInfinity)
-                {
-                    result_textBox.Text += $"{i}: ";
-                    foreach (int v in weys[i])
-                        result_textBox.Text += $"{v} ";
-                    result_textBox.Text += Environment.NewLine;
-                }
-                else
-                    result_textBox.Text += $"{i}: Вершина не достижима{Environment.NewLine}";
+            }else
+            {
+                result_textBox.Text += "Граф (орграф) содержит цыклы отрицательной длинны";
+            }
+
         }
     }
 }

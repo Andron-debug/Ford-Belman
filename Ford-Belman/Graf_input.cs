@@ -130,23 +130,30 @@ namespace Ford_Belman
                     }
                 //Кротчайшие пути
                 List<int>[] ways = new List<int>[vertex];
-                for (int t = 0; t < vertex; t++)
+                try
                 {
-                    List<int> way = new List<int>();
-                    way.Add(t);
-                    int v = t;
-                    while(start != v)
+                    for (int t = 0; t < vertex; t++)
                     {
-                        int u;
-                        for (u = 0; u<vertex; u++)
+                        List<int> way = new List<int>();
+                        way.Add(t);
+                        int v = t;
+                        while (start != v)
                         {
-                            if (D[v] == D[u] + graf[u, v]) break;
+                            int u;
+                            for (u = 0; u < vertex; u++)
+                            {
+                                if ((D[v] == D[u] + graf[u, v]) && (D[v] >= 0)) break;
+                            }
+                            way.Add(u);
+                            v = u;
                         }
-                        way.Add(u);
-                        v = u;
+                        way.Reverse();
+                        ways[t] = way;
                     }
-                    way.Reverse();
-                    ways[t] = way;
+                }
+                catch
+                {
+                    ways = null;
                 }
                 Form f = new Result(D, start, ways);
                 f.ShowDialog();
