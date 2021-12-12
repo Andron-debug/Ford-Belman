@@ -134,6 +134,7 @@ namespace Ford_Belman
                 {
                     for (int t = 0; t < vertex; t++)
                     {
+                        if (double.IsInfinity(D[t])) continue;
                         List<int> way = new List<int>();
                         way.Add(t);
                         int v = t;

@@ -36,16 +36,18 @@ namespace Ford_Belman
             
                 result_textBox.Text += $"Кротчайшие пути {start} до {Environment.NewLine}";
                 for (int i = 0; i < D.Length; i++)
-                    if (D[i] != double.PositiveInfinity)
+                {
+                   
+                    if ((D[i] != double.PositiveInfinity)&&(weys[i] != null))
                     {
                         result_textBox.Text += $"{i}: ";
                         foreach (int v in weys[i])
-                            result_textBox.Text += $"{v} ";
-                        result_textBox.Text += Environment.NewLine;
+                                result_textBox.Text += $"{v} ";
+                         result_textBox.Text += Environment.NewLine;
                     }
                     else
                         result_textBox.Text += $"{i}: Вершина не достижима{Environment.NewLine}";
-
+                }
             }else
             {
                 result_textBox.Text += "Граф (орграф) содержит цыклы отрицательной длинны";
