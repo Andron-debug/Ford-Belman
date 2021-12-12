@@ -27,14 +27,14 @@ namespace Ford_Belman
         {
             if (weys != null)
             {
-                result_textBox.Text = $"Расстояния от {start} до {Environment.NewLine}";
+                result_textBox.Text = $"Расстояние от {start} до {Environment.NewLine}";
             for (int i = 0; i < D.Length; i++)
                 if (D[i] != double.PositiveInfinity)
                     result_textBox.Text += $"{i}: {D[i]}{Environment.NewLine}";
                 else
-                    result_textBox.Text += $"{i}: Вершина не достижима{Environment.NewLine}";
+                    result_textBox.Text += $"{i}: Вершина недостижима{Environment.NewLine}";
             
-                result_textBox.Text += $"Кротчайшие пути {start} до {Environment.NewLine}";
+                result_textBox.Text += $"Кротчайший пути {start} до {Environment.NewLine}";
                 for (int i = 0; i < D.Length; i++)
                 {
                    
@@ -46,11 +46,11 @@ namespace Ford_Belman
                          result_textBox.Text += Environment.NewLine;
                     }
                     else
-                        result_textBox.Text += $"{i}: Вершина не достижима{Environment.NewLine}";
+                        result_textBox.Text += $"{i}: Вершина недостижима{Environment.NewLine}";
                 }
             }else
             {
-                result_textBox.Text += "Граф (орграф) содержит цыклы отрицательной длинны";
+                result_textBox.Text += "Граф (орграф) содержит циклы отрицательной длинны";
             }
 
         }

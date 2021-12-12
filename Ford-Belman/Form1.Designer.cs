@@ -53,13 +53,13 @@ namespace Ford_Belman
             this.vertex_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.vertex_textBox.Location = new System.Drawing.Point(12, 51);
             this.vertex_textBox.Name = "vertex_textBox";
-            this.vertex_textBox.Size = new System.Drawing.Size(338, 38);
+            this.vertex_textBox.Size = new System.Drawing.Size(381, 38);
             this.vertex_textBox.TabIndex = 1;
             // 
             // next_button
             // 
             this.next_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.next_button.Location = new System.Drawing.Point(260, 95);
+            this.next_button.Location = new System.Drawing.Point(303, 95);
             this.next_button.Name = "next_button";
             this.next_button.Size = new System.Drawing.Size(91, 48);
             this.next_button.TabIndex = 2;
@@ -70,7 +70,7 @@ namespace Ford_Belman
             // about_button
             // 
             this.about_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.about_button.Location = new System.Drawing.Point(16, 95);
+            this.about_button.Location = new System.Drawing.Point(12, 95);
             this.about_button.Name = "about_button";
             this.about_button.Size = new System.Drawing.Size(51, 48);
             this.about_button.TabIndex = 3;
@@ -81,7 +81,7 @@ namespace Ford_Belman
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 148);
+            this.ClientSize = new System.Drawing.Size(406, 148);
             this.Controls.Add(this.about_button);
             this.Controls.Add(this.next_button);
             this.Controls.Add(this.vertex_textBox);

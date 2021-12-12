@@ -146,6 +146,7 @@ namespace Ford_Belman
             this.label2.Size = new System.Drawing.Size(133, 17);
             this.label2.TabIndex = 8;
             this.label2.Text = "Исходная вершина";
+            
             // 
             // start_vertex
             // 
